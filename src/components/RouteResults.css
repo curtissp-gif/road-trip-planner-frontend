@@ -1,85 +1,111 @@
 .results {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .results h2 {
   margin-bottom: 20px;
   color: #333;
+  font-size: 1.8em;
 }
 
 .routes-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
 }
 
 .route-card {
   background: white;
-  border-radius: 8px;
   padding: 20px;
+  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-left: 4px solid #667eea;
 }
 
-.route-card h3 {
+.route-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.route-header h3 {
+  margin: 0;
+  color: #333;
+  flex: 1;
+}
+
+.expand-icon {
+  font-size: 1.2em;
   color: #667eea;
-  margin-bottom: 15px;
-  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.route-header:hover {
+  opacity: 0.8;
 }
 
 .route-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  gap: 15px;
+  margin: 15px 0;
 }
 
 .info-item {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .info-item .label {
   font-weight: bold;
   color: #666;
   font-size: 0.9em;
+  text-transform: uppercase;
 }
 
 .info-item .value {
-  color: #333;
-  font-size: 1.2em;
-  margin-top: 5px;
+  font-size: 1.3em;
+  color: #667eea;
+  font-weight: bold;
+}
+
+.alerts-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
 }
 
 .alerts-section h4 {
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   color: #333;
+  font-size: 1em;
 }
 
 .alerts-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .alert {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
   display: flex;
-  align-items: flex-start;
   gap: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border-left: 3px solid;
 }
 
 .alert-precipitation {
-  background-color: #fff3cd;
-  border-left: 3px solid #ffc107;
+  background-color: #e3f2fd;
+  border-left-color: #2196f3;
 }
 
 .alert-wind {
-  background-color: #f8d7da;
-  border-left: 3px solid #dc3545;
+  background-color: #fff3e0;
+  border-left-color: #ff9800;
 }
 
 .alert-icon {
@@ -87,21 +113,27 @@
 }
 
 .alert-text {
+  flex: 1;
   font-size: 0.95em;
   color: #333;
 }
 
 .alert-text small {
   display: block;
-  color: #666;
   margin-top: 3px;
+  color: #666;
+  font-weight: bold;
 }
 
 .no-alerts {
-  color: #28a745;
+  color: #4caf50;
   font-weight: bold;
-  padding: 10px;
-  background-color: #d4edda;
-  border-left: 3px solid #28a745;
-  border-radius: 4px;
+  margin: 0;
+}
+
+.map-container {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f0f0f0;
 }
