@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './RouteResults.css';
 
 function RouteResults({ routes }) {
+  const [expandedRoute, setExpandedRoute] = useState(null);
+
+  const toggleExpand = (routeId) => {
+    setExpandedRoute(expandedRoute === routeId ? null : routeId);
+  };
+
   return (
     <div className="results">
       <h2>Available Routes</h2>
       <div className="routes-container">
         {routes.map(route => (
           <div key={route.id} className="route-card">
-            <h3>{route.name}</h3>
+            <div className="route-header" onClick={() => toggleExpand(route.id)}>
+              <h3>{route.name}</h3>
+              <span className="expand-icon">{expandedRoute === route.id ? '▼' : '▶'}</span>
+            </div>
+
             <div className="route-info">
               <div className="info-item">
                 <span className="label">Distance:</span>
@@ -41,6 +51,19 @@ function RouteResults({ routes }) {
                 <p className="no-alerts">✓ No weather alerts on this route</p>
               )}
             </div>
+
+            {expandedRoute === route.id && route.coordinates && (
+              <div className="map-container">
+                <iframe
+                  width="100%"
+                  height="400"
+                  frameBorder="0"
+                  src={`https://www.openstreetmap.org/export/embed.html?bbox=${route.coordinates.bbox}&layer=mapnik`}
+                  style={{ marginTop: '20px', borderRadius: '8px' }}
+                  title={`Map for ${route.name}`}
+                ></iframe>
+              </div>
+            )}
           </div>
         ))}
       </div>
