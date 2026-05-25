@@ -8,6 +8,13 @@ function RouteResults({ routes }) {
     setExpandedRoute(expandedRoute === routeId ? null : routeId);
   };
 
+  const getMapUrl = (bbox) => {
+    // bbox format: minLon,minLat,maxLon,maxLat
+    // OpenStreetMap export URL format
+    if (!bbox) return '';
+    return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik`;
+  };
+
   return (
     <div className="results">
       <h2>Available Routes</h2>
@@ -54,12 +61,15 @@ function RouteResults({ routes }) {
 
             {expandedRoute === route.id && route.coordinates && (
               <div className="map-container">
+                <p className="map-info">
+                  📍 {route.coordinates.start.lat.toFixed(2)}°N, {route.coordinates.start.lon.toFixed(2)}°W → {route.coordinates.end.lat.toFixed(2)}°N, {route.coordinates.end.lon.toFixed(2)}°W
+                </p>
                 <iframe
                   width="100%"
                   height="400"
                   frameBorder="0"
-                  src={`https://www.openstreetmap.org/export/embed.html?bbox=${route.coordinates.bbox}&layer=mapnik`}
-                  style={{ marginTop: '20px', borderRadius: '8px' }}
+                  src={getMapUrl(route.coordinates.bbox)}
+                  style={{ marginTop: '10px', borderRadius: '8px' }}
                   title={`Map for ${route.name}`}
                 ></iframe>
               </div>
